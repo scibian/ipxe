@@ -1,3 +1,11 @@
+ipxe (1.0.0+git-20161027.b991c67-1sci9u1) scibian9; urgency=medium
+
+  * Add alternate build w/ serial console config
+  * Drop dh to 9 in build-dep
+  * Scibianization
+
+ -- Rémi Palancher <remi-externe.palancher@edf.fr>  Wed, 05 Sep 2018 17:12:38 +0200
+
 ipxe (1.0.0+git-20161027.b991c67-1) unstable; urgency=medium
 
   * New snapshot. (closes: #799216)

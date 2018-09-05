@@ -179,7 +179,9 @@ Files: src/include/ipxe/efi/efi_*
 License: GPL-2+
 
 Files: debian/*
-Copyright: 2011 Bastian Blank <waldi@debian.org>
+Copyright:
+ 2011 Bastian Blank <waldi@debian.org>
+ 2018 Scibian Project <legal@scibian.org>
 License: GPL-2+
 
 License: GPL-2

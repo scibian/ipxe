@@ -2,3 +2,4 @@ debian/tree/ipxe/* .
 src/bin-efi/ipxe.iso src/bin/ipxe.pxe usr/lib/ipxe
 src/bin-x86_64-efi/ipxe.efi src/bin/ipxe.lkrn boot
 src/bin/undionly.kpxe src/bin/undionly.kkpxe usr/lib/ipxe
+src-serial/bin/undionly-serial.kpxe usr/lib/ipxe

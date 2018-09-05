@@ -12,10 +12,15 @@ VERSION := $(shell dpkg-parsechangelog | sed -ne 's,^Version: *\(.*\)$$,\1,p')
 	+dh $@
 
 override_dh_auto_configure:
-	cp debian/config/* src/config/local
+	# full copy of source directory to build 2 versions w/ different config
+	cp -r src src-serial
+	cp debian/config/general.h src/config/local
+	cp debian/config/general.h src-serial/config/local
+	cp debian/config/console.h src-serial/config/local
 
 src/bin/% src/bin-x86_64-efi/%:
 	dh_auto_build --sourcedirectory=src -- V=1 NO_WERROR=1 VERSION="$(VERSION)" $(subst src/,,$@)
+	dh_auto_build --sourcedirectory=src-serial -- V=1 NO_WERROR=1 VERSION="$(VERSION)" CONFIG=serial $(subst src/,,$@)
 
 src/bin-efi/%.efirom: src/bin/%.rom src/bin-x86_64-efi/%.efirom
 	@[ -d $(dir $@) ] || mkdir $(dir $@)
@@ -27,10 +32,17 @@ src/bin-efi/%.iso: src/bin/%.lkrn src/bin-x86_64-efi/%.efi
 
 override_dh_auto_build: $(shell grep -hoE 'src/bin(-[^/]*)?/\S+' debian/*.install)
 
+override_dh_auto_install:
+	dh_auto_install
+	# rename the file here to be installed with a different name in ipxe
+	# package
+	mv src-serial/bin/undionly.kpxe src-serial/bin/undionly-serial.kpxe
+
 override_dh_auto_clean:
 	$(MAKE) -C src veryclean
 	rm -fr src/bin*
 	rm -f src/config/local/*
+	rm -fr src-serial
 
 .NOTPARALLEL:
 .SECONDARY:

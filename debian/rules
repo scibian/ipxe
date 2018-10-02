@@ -19,8 +19,8 @@ override_dh_auto_configure:
 	cp debian/config/console.h src-serial/config/local
 
 src/bin/% src/bin-x86_64-efi/%:
-	dh_auto_build --sourcedirectory=src -- V=1 NO_WERROR=1 VERSION="$(VERSION)" $(subst src/,,$@)
-	dh_auto_build --sourcedirectory=src-serial -- V=1 NO_WERROR=1 VERSION="$(VERSION)" CONFIG=serial $(subst src/,,$@)
+	dh_auto_build --sourcedirectory=src -- V=1 NO_WERROR=1 VERSION="$(VERSION)" EMBED=$(CURDIR)/debian/dhcp_retry.ipxe $(subst src/,,$@)
+	dh_auto_build --sourcedirectory=src-serial -- V=1 NO_WERROR=1 VERSION="$(VERSION)" EMBED=$(CURDIR)/debian/dhcp_retry.ipxe CONFIG=serial $(subst src/,,$@)
 
 src/bin-efi/%.efirom: src/bin/%.rom src/bin-x86_64-efi/%.efirom
 	@[ -d $(dir $@) ] || mkdir $(dir $@)

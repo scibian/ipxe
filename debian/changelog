@@ -1,3 +1,9 @@
+ipxe (1.0.0+git-20180912.af18607-0sci9u1) scibian9; urgency=medium
+
+  * Imported Upstream version 1.0.0+git-20180912.af18607
+
+ -- Rémi Palancher <remi-externe.palancher@edf.fr>  Wed, 12 Sep 2018 09:11:54 +0200
+
 ipxe (1.0.0+git-20161027.b991c67-1sci9u2) scibian9; urgency=medium
 
   * Embed a custom iPXE script to retry DHCP requests until it succeeds
